@@ -1,23 +1,39 @@
-@metadata_processor
+@metadata_reactor
 def add_check_mk_tags(metadata):
-    if node.has_bundle('check_mk_agent'):
-        metadata.setdefault('check_mk', {})
-        metadata['check_mk'].setdefault('tags', {})
-        metadata['check_mk']['tags']['dist'] = 'deb'
+    if not node.has_bundle("check_mk_agent"):
+        raise DoNotRunAgain
 
-    return metadata, DONE
+    return {
+        'check_mk': {
+            'tags': {
+                'dist': 'deb',
+            }
+        }
+    }
 
 
-@metadata_processor
+@metadata_reactor
 def add_apt_packages(metadata):
-    if node.has_bundle("apt"):
-        metadata.setdefault('apt', {})
-        metadata['apt'].setdefault('packages', {})
+    if not node.has_bundle("apt"):
+        raise DoNotRunAgain
 
-        for package in ['cron-apt', 'curl', 'ca-certificates', 'git',
-                "grep", "gzip", "hostname", "htop", 'tmux',
-                'vim', 'zsh', 'unzip']:
+    return {
+        'apt': {
+            'packages': {
+                'cron-apt': {'installed': True},
+                'curl': {'installed': True},
+                'ca-certificates': {'installed': True},
+                'git': {'installed': True},
 
-            metadata['apt']['packages'][package] = {'installed': True}
+                "grep": {'installed': True},
+                "gzip": {'installed': True},
+                "hostname": {'installed': True},
+                "htop": {'installed': True},
+                'tmux': {'installed': True},
 
-    return metadata, DONE
+                'vim': {'installed': True},
+                'zsh': {'installed': True},
+                'unzip': {'installed': True},
+            }
+        }
+    }
