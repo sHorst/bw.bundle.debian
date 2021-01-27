@@ -40,4 +40,5 @@ release_names = {
 # set release_name
 defaults['debian'] = {
     'release_name': release_names.get(node.os_version[0], 'jessie'),
+    'init': 'systemd' if node.os_version[0] > 8 else 'init5',
 }
