@@ -12,7 +12,8 @@ if node.has_bundle("check_mk_agent"):
 if node.has_bundle("apt"):
     defaults['apt'] = {
         'packages': {
-            'cron-apt': {'installed': True},
+            'cron-apt': {'installed': False},
+            'unattended-upgrades': {'installed': True},
             'curl': {'installed': True},
             'ca-certificates': {'installed': True},
             'git': {'installed': True},
