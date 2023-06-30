@@ -36,6 +36,8 @@ release_names = {
     10: 'buster',
     11: 'bullseye',
     12: 'bookworm',
+    13: 'trixie',
+    14: 'forky',
 }
 
 # set release_name
