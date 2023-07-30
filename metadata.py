@@ -1,3 +1,5 @@
+global node
+
 defaults = {}
 
 # if we use check_mk, add the dist tag
@@ -14,6 +16,7 @@ if node.has_bundle("apt"):
         'packages': {
             'cron-apt': {'installed': False},
             'unattended-upgrades': {'installed': True},
+            'apt-listchanges': {'installed': True},
             'curl': {'installed': True},
             'ca-certificates': {'installed': True},
             'git': {'installed': True},
