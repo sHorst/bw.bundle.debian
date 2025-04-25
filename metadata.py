@@ -51,7 +51,7 @@ defaults['debian'] = {
     'release_name': release_names.get(node.os_version[0], 'jessie'),
     'init': 'systemd' if node.os_version[0] > 8 else 'init5',
     'unattended_upgrades': {
-        'enabled': False,
+        'enabled': True,
         'pkg_blacklist': [],
         'mail_receiver': 'root',
         'mail_report': 'on-error',
