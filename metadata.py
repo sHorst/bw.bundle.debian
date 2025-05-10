@@ -15,8 +15,11 @@ if node.has_bundle("apt"):
     defaults['apt'] = {
         'packages': {
             'cron-apt': {'installed': False},
+
             'unattended-upgrades': {'installed': True},
             'apt-listchanges': {'installed': True},
+            'mailutils': {'installed': True},
+
             'curl': {'installed': True},
             'ca-certificates': {'installed': True},
             'git': {'installed': True},
@@ -47,4 +50,10 @@ release_names = {
 defaults['debian'] = {
     'release_name': release_names.get(node.os_version[0], 'jessie'),
     'init': 'systemd' if node.os_version[0] > 8 else 'init5',
+    'unattended_upgrades': {
+        'enabled': True,
+        'pkg_blacklist': [],
+        'mail_receiver': 'root',
+        'mail_report': 'on-error',
+    }
 }
