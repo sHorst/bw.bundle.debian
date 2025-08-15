@@ -31,6 +31,7 @@ if node.has_bundle("apt"):
             'tmux': {'installed': True},
 
             'vim': {'installed': True},
+            'zstd': {'installed': True},
             'zsh': {'installed': True},
             'unzip': {'installed': True},
         }
