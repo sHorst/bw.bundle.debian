@@ -37,6 +37,9 @@ if node.has_bundle("apt"):
         }
     }
 
+if node.os_version[0] > 12: # trixie has new default packages
+    defaults['apt']['packages']['linux-sysctl-defaults'] = {'installed': True}
+
 release_names = {
     8: 'jessie',
     9: 'stretch',
