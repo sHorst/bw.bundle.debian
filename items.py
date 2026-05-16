@@ -1,14 +1,16 @@
 global node
 
-pkg_apt = {
-    # remove unused packages
-    'nano': {
-        "installed": False,
-    },
-}
+
+if node.metadata.get('apt/packages/nano', None) is None:
+    pkg_apt = {
+        # remove unused packages
+        'nano': {
+            "installed": False,
+        },
+    }
 
 if node.metadata.get('debian', {}).get('unattended_upgrades', {}).get('enabled', False):
-    unattended_upgrades_cfg  = node.metadata.get('debian', {}).get('unattended_upgrades', {})
+    unattended_upgrades_cfg = node.metadata.get('debian', {}).get('unattended_upgrades', {})
 
     files = {
         '/etc/apt/apt.conf.d/52unattended-upgrades-local': {
