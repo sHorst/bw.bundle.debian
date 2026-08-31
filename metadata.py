@@ -1,6 +1,11 @@
 global node
 
-defaults = {}
+defaults = {
+    'unattended_updates': {
+        'remove_unused': False,
+        'automatic_reboot': False,
+    }
+}
 
 # if we use check_mk, add the dist tag
 if node.has_bundle("check_mk_agent"):
